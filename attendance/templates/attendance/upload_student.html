@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Upload Student</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        text-align: center;
+        color: #333;
+        margin-top: 20px;
+      }
+      .container {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+      label {
+        margin-bottom: 8px;
+        font-weight: bold;
+      }
+      input[type="text"],
+      input[type="file"] {
+        padding: 8px;
+        margin-bottom: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+      }
+      button[type="submit"] {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+      }
+      button[type="submit"]:hover {
+        background-color: #0056b3;
+      }
+      a {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        color: #007bff;
+        text-decoration: none;
+        font-size: 18px;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Upload Student</h1>
+    <div class="container">
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="id_name">Name:</label>
+        {{ form.name }}
+        <label for="id_image">Image:</label>
+        {{ form.image }}
+        <button type="submit" class="btn btn-primary">Upload</button>
+      </form>
+    </div>
+    <a href="{% url 'index' %}" class="btn btn-secondary">Back to Home</a>
+
+    <!-- Bootstrap JS and jQuery (optional, for Bootstrap components that require JS) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>

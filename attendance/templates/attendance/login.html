@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        display: flex;
+        min-height: 100vh;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        margin: 0;
+        background-color: #f8f9fa;
+      }
+      .login-container {
+        max-width: 400px;
+        padding: 20px;
+        background-color: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .form-group label {
+        font-weight: bold;
+      }
+      .form-control {
+        border-radius: 20px;
+      }
+      .btn-primary {
+        border-radius: 20px;
+      }
+      .invalid-feedback {
+        display: block;
+        font-size: 14px;
+        color: #dc3545;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-container">
+      <h2 class="text-center mb-4">Login</h2>
+      <form method="POST" novalidate>
+        {% csrf_token %} {% if form.non_field_errors %}
+        <div class="alert alert-danger">
+          {% for error in form.non_field_errors %}
+          <p>{{ error }}</p>
+          {% endfor %}
+        </div>
+        {% endif %}
+        <div class="form-group">
+          <label for="id_username">Username:</label>
+          {{ form.username }} {% if form.username.errors %}
+          <div class="invalid-feedback">
+            {{ form.username.errors|join:", " }}
+          </div>
+          {% endif %}
+        </div>
+        <div class="form-group">
+          <label for="id_password">Password:</label>
+          {{ form.password }} {% if form.password.errors %}
+          <div class="invalid-feedback">
+            {{ form.password.errors|join:", " }}
+          </div>
+          {% endif %}
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Login</button>
+      </form>
+      <div class="text-center mt-3">
+        <a href="{% url 'register' %}" class="btn btn-link">Register</a>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS (optional, for components that require JS) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>

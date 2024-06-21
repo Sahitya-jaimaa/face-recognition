@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Register</title>
+
+    <!-- Bootstrap CSS - Replace with your preferred version (e.g., Bootstrap 5) -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      /* Optional: Custom styles */
+      body {
+        display: flex;
+        min-height: 100vh;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        margin: 0;
+        background-color: #f8f9fa; /* Optional: Background color for the body */
+      }
+      .register-container {
+        max-width: 400px; /* Optional: Adjust the maximum width of the register container */
+        padding: 20px;
+        background-color: #ffffff;
+        border: 1px solid #dee2e6;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .form-group label {
+        font-weight: bold;
+      }
+      .form-control {
+        border-radius: 20px; /* Rounded corners for input fields */
+      }
+      .btn-primary {
+        border-radius: 20px; /* Rounded corners for the register button */
+      }
+      .invalid-feedback {
+        display: block;
+        font-size: 14px;
+        color: #dc3545; /* Bootstrap's default danger color */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="register-container">
+      <h2 class="text-center mb-4">Register</h2>
+      <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="id_username">Username:</label>
+          {{ form.username }} {% if form.username.errors %}
+          <div class="invalid-feedback">
+            {{ form.username.errors|join:", " }}
+          </div>
+          {% endif %}
+        </div>
+        <div class="form-group">
+          <label for="id_password1">Password:</label>
+          {{ form.password1 }} {% if form.password1.errors %}
+          <div class="invalid-feedback">
+            {{ form.password1.errors|join:", " }}
+          </div>
+          {% endif %}
+        </div>
+        <div class="form-group">
+          <label for="id_password2">Confirm Password:</label>
+          {{ form.password2 }} {% if form.password2.errors %}
+          <div class="invalid-feedback">
+            {{ form.password2.errors|join:", " }}
+          </div>
+          {% endif %}
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">
+          Register
+        </button>
+      </form>
+      <div class="text-center mt-3">
+        <a href="{% url 'login' %}" class="btn btn-link">Login</a>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS (optional, for components that require JS) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
